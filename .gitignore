@@ -40,3 +40,6 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
+# Avoiding commit keys
+android/app/src/main/AndroidManifest.xml
+ios/Runner/Info.plist
