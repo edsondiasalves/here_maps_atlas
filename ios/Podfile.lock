@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - here_sdk (4.6.0.0.4015.release):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - here_sdk (from `.symlinks/plugins/here_sdk/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  here_sdk:
+    :path: ".symlinks/plugins/here_sdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  here_sdk: c26612f7d909f16f3d3f3ab14915cdc31da411d9
+
+PODFILE CHECKSUM: 9454f986cdc14825d1c7c94582a774ccf7afd8b1
+
+COCOAPODS: 1.10.0
