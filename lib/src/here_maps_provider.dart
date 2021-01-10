@@ -21,24 +21,30 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
   @override
   void initState() {
     super.initState();
-    SdkContext.init(IsolateOrigin.main);
+    try {
+      SdkContext.init(IsolateOrigin.main);
+    } catch (error) {
+      print('Error initializing SdkContext: ${error.toString()}');
+    }
   }
 
   void _onMapCreated(HereMapController hereMapController) {
-    hereMapController.mapScene.loadSceneForMapScheme(MapScheme.normalDay,
-        (MapError error) {
-      if (error != null) {
-        print('Map scene not loaded. MapError: ${error.toString()}');
-        return;
-      }
+    hereMapController.mapScene.loadSceneForMapScheme(
+      MapScheme.normalDay,
+      (MapError error) {
+        if (error != null) {
+          print('Map scene not loaded. MapError: ${error.toString()}');
+          return;
+        }
 
-      const double distanceToEarthInMeters = 8000;
-      hereMapController.camera.lookAtPointWithDistance(
-          GeoCoordinates(
-            widget.initialCameraPosition.target.latitude,
-            widget.initialCameraPosition.target.longitude,
-          ),
-          distanceToEarthInMeters);
-    });
+        const double distanceToEarthInMeters = 8000;
+        hereMapController.camera.lookAtPointWithDistance(
+            GeoCoordinates(
+              widget.initialCameraPosition.target.latitude,
+              widget.initialCameraPosition.target.longitude,
+            ),
+            distanceToEarthInMeters);
+      },
+    );
   }
 }
