@@ -51,8 +51,8 @@ main() {
       final FakePlatformHereMaps platformHereMaps =
           fakePlatformViewsController.lastCreatedView;
 
-      expect(expectedPosition, platformHereMaps.cameraPosition.target);
-      expect(12.0, platformHereMaps.cameraPosition.zoom);
+      expect(expectedPosition, platformHereMaps.cameraPosition?.target);
+      expect(12.0, platformHereMaps.cameraPosition?.zoom);
     });
   });
 }
