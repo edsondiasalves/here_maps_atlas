@@ -42,4 +42,4 @@
 
 ```
 ### Run the project:
-* `flutter run lib/src/main.dart`
+* `flutter run lib/main.dart`
