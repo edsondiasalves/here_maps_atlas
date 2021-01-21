@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.here_maps_atlas">
+    package="com.example.here_maps_atlas_example">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -7,8 +7,11 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="here_maps_atlas"
+        android:label="here_maps_atlas_example"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.here.sdk.access_key_id" android:value="[PUT YOUR KEY HERE]"/>
+        <meta-data android:name="com.here.sdk.access_key_secret" android:value="[PUT YOUR SECRET HERE]"/>
 
         <activity
             android:name=".MainActivity"

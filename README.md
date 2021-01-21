@@ -6,11 +6,16 @@
 * `git clone https://github.com/edsondiasalves/here_maps_atlas.git`
 ### Enter in the root directory: 
 - `cd here_maps_atlas`
-### Download the dependencies:
+### Download the root dependencies:
 * `flutter pub get`
-### Download the heresdk ios framework manually:
->Since the [heresdk ios framework file](https://github.com/edsondiasalves/here_sdk/blob/main/ios/Frameworks/heresdk.framework/heresdk) uses git lfs to be hosted in github, you need to download it manually to the flutter dependency directory: `/Users/[YOUR-USER]/.pub-cache/git/here_sdk-[REFERENCE]/ios/Frameworks/heresdk.framework/`
-### Set the credencials
+### Download the here sdk ios framework manually:
+>Since the [here sdk ios framework file](https://github.com/edsondiasalves/here_sdk/blob/main/ios/Frameworks/heresdk.framework/heresdk) uses git lfs to be hosted in github, you need to download it manually to the flutter dependency directory: `/Users/[YOUR-USER]/.pub-cache/git/here_sdk-[REFERENCE]/ios/Frameworks/heresdk.framework/`
+### Enter in the example project:
+* `cd example`
+### Download the example dependencies:
+* `flutter pub get`
+### Set the credentials
+#### For getting you API Key and secret sign up to the [Here Developer Portal](https://developer.here.com/#)
 #### Ios:
 > In the `ios/Runner/Info.plist` file change the highlighted values
 ```
