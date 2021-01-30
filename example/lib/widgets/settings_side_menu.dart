@@ -8,53 +8,56 @@ class SettingsSideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      width: 320,
+      width: 180,
       child: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Here Maps Settings'),
+            title: Text('Google Maps Settings'),
             onTap: () => {},
           ),
           Container(
             margin: EdgeInsets.only(
               left: 15,
             ),
-            child: Text('City'),
+            child: Text('Initial Position'),
           ),
           BlocBuilder<ConfigurationBloc, ConfigurationState>(
             builder: (context, state) {
               return Column(
                 children: [
                   Container(
-                    child: Row(
+                    child: Column(
                       children: [
-                        Radio(
+                        RadioListTile<City>(
+                          title: const Text('Lisbon'),
+                          dense: true,
                           value: City.Lisbon,
                           groupValue: state.city,
-                          onChanged: (value) {
+                          onChanged: (City value) {
                             BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeCityStarted(city: value));
+                                .add(ChangeInitialPositionStarted(city: value));
                           },
                         ),
-                        Text('Lisbon'),
-                        Radio(
+                        RadioListTile<City>(
+                          title: const Text('São Paulo'),
+                          dense: true,
                           value: City.SaoPaulo,
                           groupValue: state.city,
-                          onChanged: (value) {
+                          onChanged: (City value) {
                             BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeCityStarted(city: value));
+                                .add(ChangeInitialPositionStarted(city: value));
                           },
                         ),
-                        Text('São Paulo'),
-                        Radio(
+                        RadioListTile<City>(
+                          title: const Text('Tokyo'),
+                          dense: true,
                           value: City.Tokyo,
                           groupValue: state.city,
-                          onChanged: (value) {
+                          onChanged: (City value) {
                             BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeCityStarted(city: value));
+                                .add(ChangeInitialPositionStarted(city: value));
                           },
                         ),
-                        Text('Tokyo'),
                       ],
                     ),
                   ),

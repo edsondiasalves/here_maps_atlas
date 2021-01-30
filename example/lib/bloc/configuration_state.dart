@@ -11,6 +11,6 @@ class ConfigurationInitial extends ConfigurationState {
   ConfigurationInitial() : super(city: City.Lisbon);
 }
 
-class CityChangedState extends ConfigurationState {
-  CityChangedState({City city}) : super(city: city);
+class InitialPositionState extends ConfigurationState {
+  InitialPositionState({City city}) : super(city: city);
 }
