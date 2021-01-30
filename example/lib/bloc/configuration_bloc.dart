@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:here_maps_atlas_example/utils/constants.dart';
 import 'package:meta/meta.dart';
 
@@ -14,8 +14,8 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
   Stream<ConfigurationState> mapEventToState(
     ConfigurationEvent event,
   ) async* {
-    if (event is ChangeCityStarted) {
-      yield CityChangedState(city: event.city);
+    if (event is ChangeInitialPositionStarted) {
+      yield InitialPositionState(city: event.city);
     }
   }
 }
