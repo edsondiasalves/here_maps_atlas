@@ -1,6 +1,6 @@
 import 'package:atlas/atlas.dart' as Atlas;
 import 'package:flutter/material.dart';
-import 'package:here_maps_atlas/src/here_atlas_controller.dart';
+import 'package:here_maps_atlas/src/here_maps_atlas_controller.dart';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
 
@@ -35,7 +35,7 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
   }
 
   void _onMapCreated(HereMapController hereMapController) {
-    HereAtlasController hereAtlasController = HereAtlasController(
+    HereMapsAtlasController hereAtlasController = HereMapsAtlasController(
       controller: hereMapController,
     );
 

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart' as HereMaps;
 
-class HereAtlasController implements AtlasController {
+class HereMapsAtlasController implements AtlasController {
   HereMaps.HereMapController _controller;
 
-  HereAtlasController({
+  HereMapsAtlasController({
     @required HereMaps.HereMapController controller,
   }) : assert(controller != null) {
     _controller = controller;

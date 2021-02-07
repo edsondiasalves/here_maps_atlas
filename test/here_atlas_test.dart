@@ -16,7 +16,7 @@ main() {
     );
   });
 
-  group('Here Atlas Provider', () {
+  group('Here Atlas', () {
     HereAtlas hereAtlas;
     CameraPosition initialCameraPosition;
 
