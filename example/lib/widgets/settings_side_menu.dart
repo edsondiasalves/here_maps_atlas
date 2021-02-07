@@ -12,7 +12,7 @@ class SettingsSideMenu extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Google Maps Settings'),
+            title: Text('Here Maps Settings'),
             onTap: () => {},
           ),
           Container(
@@ -26,40 +26,20 @@ class SettingsSideMenu extends StatelessWidget {
               return Column(
                 children: [
                   Container(
-                    child: Column(
-                      children: [
-                        RadioListTile<City>(
-                          title: const Text('Lisbon'),
-                          dense: true,
-                          value: City.Lisbon,
-                          groupValue: state.city,
-                          onChanged: (City value) {
-                            BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeInitialPositionStarted(city: value));
-                          },
-                        ),
-                        RadioListTile<City>(
-                          title: const Text('São Paulo'),
-                          dense: true,
-                          value: City.SaoPaulo,
-                          groupValue: state.city,
-                          onChanged: (City value) {
-                            BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeInitialPositionStarted(city: value));
-                          },
-                        ),
-                        RadioListTile<City>(
-                          title: const Text('Tokyo'),
-                          dense: true,
-                          value: City.Tokyo,
-                          groupValue: state.city,
-                          onChanged: (City value) {
-                            BlocProvider.of<ConfigurationBloc>(context)
-                                .add(ChangeInitialPositionStarted(city: value));
-                          },
-                        ),
-                      ],
-                    ),
+                    child: Text('Initial Position'),
+                  ),
+                  ..._buildCityList(
+                    context: context,
+                    initialPosition: state.initialPosition,
+                    onChangeCity: onChangeInitialPosition,
+                  ),
+                  Container(
+                    child: Text('Move Camera'),
+                  ),
+                  ..._buildCityList(
+                    context: context,
+                    initialPosition: state.currentPosition,
+                    onChangeCity: onChangeCameraPosition,
                   ),
                 ],
               );
@@ -69,4 +49,40 @@ class SettingsSideMenu extends StatelessWidget {
       ),
     );
   }
+
+  List<Widget> _buildCityList({
+    BuildContext context,
+    City initialPosition,
+    Function(BuildContext, City) onChangeCity,
+  }) {
+    List<Widget> cities = [];
+    City.values.forEach((city) => {
+          cities.add(RadioListTile<City>(
+            title: Text(city.toString().split('.')[1]),
+            dense: true,
+            value: city,
+            groupValue: initialPosition,
+            onChanged: (City city) => onChangeCity(context, city),
+          ))
+        });
+    return cities;
+  }
+
+  final Function(BuildContext, City) onChangeInitialPosition = (
+    BuildContext context,
+    City value,
+  ) {
+    BlocProvider.of<ConfigurationBloc>(context).add(
+      ChangeInitialPositionStarted(city: value),
+    );
+  };
+
+  final Function(BuildContext, City) onChangeCameraPosition = (
+    BuildContext context,
+    City value,
+  ) {
+    BlocProvider.of<ConfigurationBloc>(context).add(
+      ChangeCameraPositionStarted(city: value),
+    );
+  };
 }
