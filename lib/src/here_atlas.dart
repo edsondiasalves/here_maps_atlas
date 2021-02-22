@@ -28,6 +28,7 @@ class HereAtlas extends Provider {
     return HereMapsProvider(
       initialCameraPosition: initialCameraPosition,
       onMapCreated: onMapCreated,
+      markers: markers,
     );
   }
 }
