@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:here_maps_atlas/src/here_maps_atlas_controller.dart';
 import 'package:here_sdk/core.dart' as HereSdkCore;
 import 'package:here_sdk/mapview.dart' as HereSdkMapView;
+import 'package:image/image.dart' as Image;
 
 import 'utils.dart';
 
@@ -61,10 +62,10 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
       HereSdkMapView.HereMapController hereMapController) async {
     for (Atlas.Marker atlasMarker in markers) {
       final coordinates = atlasMarker.position.toHereMapsGeoCoordinate();
-      final iconData = await _loadAsset(atlasMarker.icon.assetName);
+      final imagePixelData = await _loadAsset(atlasMarker);
 
       final iconMapImage = HereSdkMapView.MapImage.withPixelDataAndImageFormat(
-        iconData,
+        imagePixelData,
         HereSdkMapView.ImageFormat.png,
       );
 
@@ -84,8 +85,17 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
     }
   }
 
-  Future<Uint8List> _loadAsset(assetName) async {
-    ByteData fileData = await rootBundle.load(assetName);
-    return Uint8List.view(fileData.buffer);
+  Future<Uint8List> _loadAsset(Atlas.Marker marker) async {
+    final fileData = await rootBundle.load(marker.icon.assetName);
+    Uint8List resizedData = Uint8List.view(fileData.buffer);
+
+    final img = Image.decodeImage(resizedData);
+    final resized = Image.copyResize(
+      img,
+      width: marker.icon.width,
+      height: marker.icon.width,
+    );
+    resizedData = Image.encodePng(resized);
+    return resizedData;
   }
 }

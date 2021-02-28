@@ -42,8 +42,11 @@ class HereMapsAtlasController implements AtlasController {
 
   @override
   Future<void> moveCamera(CameraPosition cameraPosition) {
-    const double distanceToEarthInMeters = 8000;
-
+    const distanceToZoomMagicNumber = 1500;
+    double distanceToEarthInMeters = 8000;
+    if (cameraPosition.zoom > 0) {
+      distanceToEarthInMeters = distanceToZoomMagicNumber * cameraPosition.zoom;
+    }
     _controller.camera?.lookAtPointWithDistance(
       cameraPosition.toGeoCoordinates(),
       distanceToEarthInMeters,

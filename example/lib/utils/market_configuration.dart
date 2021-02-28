@@ -38,7 +38,10 @@ class ResultEngine {
 
   Set<Marker> _getNewYorkPizzaPlacesMarkers() {
     List<Marker> markers = [];
-    final pizzaIcon = MarkerIcon(assetName: 'assets/images/pizza.png');
+    final pizzaIcon = MarkerIcon(
+      assetName: 'assets/images/pizza.png',
+      width: 200,
+    );
 
     markers.add(
       Marker(
@@ -100,7 +103,10 @@ class ResultEngine {
 
   Set<Marker> _getLondonMuseumMarkers() {
     List<Marker> markers = [];
-    final museumIcon = MarkerIcon(assetName: 'assets/images/pizza.png');
+    final museumIcon = MarkerIcon(
+      assetName: 'assets/images/museum.png',
+      width: 200,
+    );
 
     markers.add(
       Marker(
@@ -162,7 +168,10 @@ class ResultEngine {
 
   Set<Marker> _getBeijingTempleMarkers() {
     List<Marker> markers = [];
-    final templeIcon = MarkerIcon(assetName: 'assets/images/pizza.png');
+    final templeIcon = MarkerIcon(
+      assetName: 'assets/images/temple.png',
+      width: 200,
+    );
 
     markers.add(
       Marker(
