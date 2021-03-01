@@ -1,7 +1,8 @@
 import 'package:atlas/atlas.dart';
 import 'package:flutter/material.dart';
-import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart' as HereMaps;
+
+import 'utils.dart';
 
 class HereMapsAtlasController implements AtlasController {
   HereMaps.HereMapController _controller;
@@ -41,11 +42,13 @@ class HereMapsAtlasController implements AtlasController {
 
   @override
   Future<void> moveCamera(CameraPosition cameraPosition) {
-    const double distanceToEarthInMeters = 8000;
-    final geoCoordinate = _cameraPositionToGeoCoordinates(cameraPosition);
-
+    const distanceToZoomMagicNumber = 1500;
+    double distanceToEarthInMeters = 8000;
+    if (cameraPosition.zoom > 0) {
+      distanceToEarthInMeters = distanceToZoomMagicNumber * cameraPosition.zoom;
+    }
     _controller.camera?.lookAtPointWithDistance(
-      geoCoordinate,
+      cameraPosition.toGeoCoordinates(),
       distanceToEarthInMeters,
     );
 
@@ -66,16 +69,6 @@ class HereMapsAtlasController implements AtlasController {
     double west,
   ) {
     throw UnimplementedError();
-  }
-
-  GeoCoordinates _cameraPositionToGeoCoordinates(
-      CameraPosition cameraPosition) {
-    final geoCoordinates = GeoCoordinates(
-      cameraPosition.target.latitude,
-      cameraPosition.target.longitude,
-    );
-    print(geoCoordinates.toString());
-    return geoCoordinates;
   }
 
   void _loadSceneCallback(HereMaps.MapError error) {
