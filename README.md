@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/edsondiasalves/here_maps_atlas/branch/main/graph/badge.svg?token=J7Q2G7JCUM)](https://codecov.io/gh/edsondiasalves/here_maps_atlas)
+
 <h1>An Atlas map provided by Here</h1>
 
 ## Getting Started

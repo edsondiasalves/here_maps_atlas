@@ -1,15 +1,9 @@
-import 'package:atlas/atlas.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:here_maps_atlas/src/here_atlas.dart';
-
 import 'fake_maps_controller.dart';
 
 main() {
   final FakePlatformViewsController fakePlatformViewsController =
       FakePlatformViewsController();
-
+  /*
   setUpAll(() {
     SystemChannels.platform_views.setMockMethodCallHandler(
       fakePlatformViewsController.fakePlatformViewsMethodHandler,
@@ -55,4 +49,5 @@ main() {
       expect(12.0, platformHereMaps.cameraPosition?.zoom);
     });
   });
+  */
 }
