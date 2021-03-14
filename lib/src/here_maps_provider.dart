@@ -43,14 +43,17 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
     );
   }
 
-  void _onMapCreated(HereSdkMapView.HereMapController hereMapController) {
-    HereMapsAtlasController hereAtlasController = HereMapsAtlasController(
+  Future<void> _onMapCreated(
+    HereSdkMapView.HereMapController hereMapController,
+  ) async {
+    final hereAtlasController = HereMapsAtlasController(
       controller: hereMapController,
     );
 
+    if (markers?.isEmpty == true) {
+      await hereAtlasController.moveCamera(initialCameraPosition);
+    }
     onMapCreated?.call(hereAtlasController);
-    hereAtlasController.moveCamera(widget.initialCameraPosition);
-
     addMarkers(hereMapController);
   }
 
@@ -58,7 +61,9 @@ class _HereMapsProviderState extends State<HereMapsProvider> {
     HereSdkMapView.HereMapController hereMapController,
   ) async {
     final hereMapMarkers = await markers.toHereSetMapMarkers();
-    hereMapMarkers.forEach((hereMapMarker) =>
-        hereMapController.mapScene.addMapMarker(hereMapMarker));
+
+    hereMapMarkers.forEach(
+      (hereMapMarker) => hereMapController.mapScene.addMapMarker(hereMapMarker),
+    );
   }
 }
